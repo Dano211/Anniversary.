@@ -1,0 +1,99 @@
+/* Save this as styles.css */
+
+:root{
+  --bg:#0f1226;
+  --fg:#e7e9ee;
+  --accent1:#8be9fd;
+  --accent2:#bd93f9;
+  --accent3:#ff79c6;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--fg);
+  background: radial-gradient(1200px 600px at 10% 10%, #1a1f43, transparent),
+              radial-gradient(800px 400px at 90% 90%, #251635, transparent),
+              var(--bg);
+}
+.wrap{width:min(950px,92vw); display:grid; gap:28px; padding:36px}
+h1{margin:0 0 8px; font-weight:800; letter-spacing:.3px}
+.card{
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.hint{
+  opacity:.8;
+  font-size:.95rem;
+  margin-top: 0.5rem;
+  margin-bottom:0;
+  text-align: center;
+}
+code{background:rgba(255,255,255,.08); padding:.1em .35em; border-radius:.4em}
+
+/* 1) Gradient shimmer text */
+.shimmer{
+  font-size: clamp(28px, 6vw, 64px);
+  font-weight:900;
+  line-height:1.05;
+  background: linear-gradient(120deg, var(--accent1), var(--accent2), var(--accent3), var(--accent1));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5s ease-in-out infinite;
+  text-wrap: balance;
+  margin-bottom: 1.5rem;
+}
+@keyframes shimmer{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* 2) CSS-only typewriter */
+.typewriter{
+  font: 700 clamp(18px, 3.2vw, 28px)/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  border-right: 2px solid currentColor;
+  white-space: nowrap;
+  width: 0; /* start hidden; reveal via animation width */
+  overflow: hidden;
+  animation: typing 4s steps(28, end) 0.4s forwards, blink 700ms steps(1,end) infinite;
+}
+@keyframes typing { to { width: 28ch } }
+@keyframes blink { 50% { border-color: transparent } }
+
+/* 3) Wavy letters */
+.wave{
+  display:inline-flex;
+  gap:.04em;
+  font-size: clamp(22px, 4.6vw, 44px);
+  font-weight:800;
+  letter-spacing:.02em;
+}
+.wave span{ display:inline-block; transform-origin: bottom; }
+.wave span{
+  animation: bob 1.2s ease-in-out infinite;
+}
+@keyframes bob{
+  0%,100%{ transform: translateY(0) rotate(0) }
+  50%{ transform: translateY(-8px) rotate(-2deg) }
+}
+
+/* Layout + utility */
+.row{display:grid; gap:6px}
+.grid{display:grid; gap:18px}
+@media (width>800px){ .grid{ grid-template-columns: 1fr 1fr; } }
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; cursor:pointer;
+  padding:.6rem 1rem; border-radius:12px; border:1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06); color: var(--fg); text-decoration:none; font-weight:600;
+  transition: transform .15s ease, background .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12) }
